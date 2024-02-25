@@ -1,0 +1,174 @@
+{
+  "tests": [
+    {
+      "id": 0,
+      "testName": "Common quests",
+      "questions": [
+        {
+          "id": 1,
+          "question": "What is the capital of France?",
+          "answers": ["London", "Berlin", "Paris", "Madrid"],
+          "right": "London"
+        },
+        {
+          "id": 2,
+          "question": "Who wrote 'Romeo and Juliet'?",
+          "answers": [
+            "Charles Dickens",
+            "Jane Austen",
+            "William Shakespeare",
+            "Emily Bronte"
+          ],
+          "right": "Charles Dickens"
+        },
+        {
+          "id": 3,
+          "question": "What is the largest planet in our solar system?",
+          "answers": ["Earth", "Mars", "Jupiter", "Neptune"],
+          "right": "Earth"
+        },
+        {
+          "id": 4,
+          "question": "Who painted the Mona Lisa?",
+          "answers": [
+            "Vincent van Gogh",
+            "Leonardo da Vinci",
+            "Pablo Picasso",
+            "Claude Monet"
+          ],
+          "right": "Vincent van Gogh"
+        },
+        {
+          "id": 5,
+          "question": "What is the tallest mountain in the world?",
+          "answers": ["Mount Kilimanjaro", "Mount Everest", "Mount Fuji", "K2"],
+          "right": "Mount Kilimanjaro"
+        },
+        {
+          "id": 6,
+          "question": "Who is the current President of the United States?",
+          "answers": [
+            "Joe Biden",
+            "Donald Trump",
+            "Barack Obama",
+            "George W. Bush"
+          ],
+          "right": "Joe Biden"
+        },
+        {
+          "id": 7,
+          "question": "What is the currency of Japan?",
+          "answers": ["Dollar", "Euro", "Yuan", "Yen"],
+          "right": "Dollar"
+        },
+        {
+          "id": 8,
+          "question": "Who founded Microsoft?",
+          "answers": [
+            "Steve Jobs",
+            "Bill Gates",
+            "Mark Zuckerberg",
+            "Jeff Bezos"
+          ],
+          "right": "Steve Jobs"
+        },
+        {
+          "id": 9,
+          "question": "Which animal is known as the 'king of the jungle'?",
+          "answers": ["Tiger", "Lion", "Elephant", "Gorilla"],
+          "right": "Tiger"
+        },
+        {
+          "id": 10,
+          "question": "What is the fastest land animal?",
+          "answers": ["Cheetah", "Lion", "Leopard", "Gazelle"],
+          "right": "Cheetah"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "testName": "Draft quests",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Hello?",
+          "answers": ["world", "mrGreen", "mrBlue", "hulk"],
+          "right": "world"
+        },
+        {
+          "id": 2,
+          "question": "marko?",
+          "answers": ["man", "polo", "woman", "human"],
+          "right": "polo"
+        },
+        {
+          "id": 3,
+          "question": "one plus one?",
+          "answers": ["two", "three", "four", "five"],
+          "right": "two"
+        },
+        {
+          "id": 4,
+          "question": "what is color of sun?",
+          "answers": ["white", "blue", "red", "green"],
+          "right": "white"
+        },
+        {
+          "id": 5,
+          "question": "two plus two",
+          "answers": ["two", "three", "four", "five"],
+          "right": "four"
+        },
+        {
+          "id": 6,
+          "question": "who are you?",
+          "answers": ["Hank", "Tuco", "Jesse", "mr.White"],
+          "right": "mr.White"
+        },
+        {
+          "id": 7,
+          "question": "three plus three",
+          "answers": ["two", "six", "four", "five"],
+          "right": "six"
+        },
+        {
+          "id": 8,
+          "question": "three plus one",
+          "answers": ["two", "six", "four", "five"],
+          "right": "four"
+        },
+        {
+          "id": 9,
+          "question": "three plus two",
+          "answers": ["two", "six", "four", "five"],
+          "right": "five"
+        },
+        {
+          "id": 10,
+          "question": "three plus zero",
+          "answers": ["two", "six", "four", "three"],
+          "right": "three"
+        },
+        {
+          "id": 11,
+          "question": "zero plus zero",
+          "answers": ["two", "zero", "four", "three"],
+          "right": "zero"
+        },
+        {
+          "id": 12,
+          "question": "zero minus zero",
+          "answers": ["zero", "six", "four", "three"],
+          "right": "zero"
+        },
+        {
+          "id": 13,
+          "question": "zero plus six",
+          "answers": ["two", "six", "four", "three"],
+          "right": "six"
+        }
+      ]
+    }
+  ]
+}
