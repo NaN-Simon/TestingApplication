@@ -32,7 +32,7 @@
 
 - React
 - Vite
-- reduxjs/toolkit@latest
+- redux toolkit
 - react-router-dom
 - axios
 - styled-components

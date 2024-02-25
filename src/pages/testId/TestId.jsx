@@ -35,7 +35,7 @@ const TestId = () => {
   const navigate = useNavigate();
   /* redux */
   const dispatch = useDispatch();
-  const { quest, testsAnswers } = useSelector((state) => state.questReducer);
+  const { quest, questAnswers } = useSelector((state) => state.questReducer);
 
   /* id текущего пака */
   const { id: questPackId } = useParams();
@@ -43,7 +43,7 @@ const TestId = () => {
   /* данные текущего пака */
   const testPackData = quest?.tests[questPackId];
 
-  const testPackName = `Test ${+questPackId + 1} - ${
+  const questPackName = `Test ${+questPackId + 1} - ${
     testPackData && testPackData.testName
   }`;
 
@@ -104,10 +104,10 @@ const TestId = () => {
 
   return (
     <StyledTestId data-name='test-id'>
-      {testPackData && <span>{testPackName}</span>}
+      {testPackData && <span>{questPackName}</span>}
 
       {testPackData?.questions.map((item, index) => {
-        const initialValue = testsAnswers[index]?.answer;
+        const initialValue = questAnswers[index]?.answer;
         const isExistNextQuestion = index + 1 !== testPackData.questions.length;
         const isLastQuestion = index + 1 === testPackData.questions.length;
 
@@ -126,14 +126,14 @@ const TestId = () => {
 
               <StyledNavigation>
                 {currentQuestNumber === 0 && (
-                  <Button onClick={backHandler}>Назад</Button>
+                  <Button onClick={backHandler}>На домашнюю страницу</Button>
                 )}
                 {currentQuestNumber > 0 && (
-                  <Button onClick={decrementQuestion}>Предыдущий вопрос</Button>
+                  <Button onClick={decrementQuestion}>Назад</Button>
                 )}
 
                 {isExistNextQuestion && (
-                  <Button onClick={incrementQuestion}>Следующий вопрос</Button>
+                  <Button onClick={incrementQuestion}>Продолжить</Button>
                 )}
 
                 {isLastQuestion && (

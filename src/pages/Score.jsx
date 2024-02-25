@@ -18,10 +18,10 @@ const StyledScore = styled.div`
 const Score = () => {
   /* redux */
   const dispatch = useDispatch();
-  const { results } = useSelector((state) => state.questReducer);
+  const { questScore } = useSelector((state) => state.questReducer);
 
   /* результаты тестов */
-  const [score, setScore] = useState(results);
+  const [score, setScore] = useState(questScore);
 
   /* получение вопросов теста (mock данные) */
   useEffect(() => {
@@ -39,14 +39,15 @@ const Score = () => {
       {score.map((item) => {
         return (
           <div id={item.id} key={item.id}>
-            Username: {item.username === '' ? 'Anon ' : item.username}- Score:{' '}
-            {item.score}- Date: {item.date} - testPackName: {item.testPackName}
+            Имя: {item.username === '' ? 'Anon ' : item.username}- Результат:{' '}
+            {item.score} - Дата прохождения: {item.date} - Название пака:{' '}
+            {item.questPackName}
           </div>
         );
       })}
       <div style={{ display: 'flex', gap: '20px' }}>
-        <Button link='/'>Home</Button>
-        <Button onClick={resetHandler}>Reset</Button>
+        <Button link='/'>На домашнюю страницу</Button>
+        <Button onClick={resetHandler}>Сброс</Button>
       </div>
     </StyledScore>
   );

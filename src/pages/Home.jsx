@@ -9,7 +9,6 @@ import Button from '../components/UI/button/Button';
 import { fetchUsers } from '../api/users';
 import { setStoreUsername } from '../store/reducers/questSlice';
 
-
 const StyledHome = styled.div`
   display: flex;
   flex-direction: column;
@@ -26,7 +25,7 @@ const StyledQuestPacks = styled.div`
 `;
 
 const Home = () => {
-  const { quest, usernameStore } = useSelector((state) => state.questReducer);
+  const { quest, questUsername } = useSelector((state) => state.questReducer);
   const dispatch = useDispatch();
 
   /* получение вопросов теста (mock данные) */
@@ -35,12 +34,12 @@ const Home = () => {
   }, [dispatch]);
 
   /* установка текущего имени пользователя.*/
-  const [username, setUsername] = useState(usernameStore);
+  const [username, setUsername] = useState(questUsername);
 
   /* Если уже было введено ранее, будет вставлено из localStorage */
   useEffect(() => {
-    setUsername(usernameStore);
-  }, [usernameStore]);
+    setUsername(questUsername);
+  }, [questUsername]);
 
   /* запись нового имени в localStorage */
   useEffect(() => {

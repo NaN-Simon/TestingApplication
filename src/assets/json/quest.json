@@ -2,13 +2,13 @@
   "tests": [
     {
       "id": 0,
-      "testName": "Common quests",
+      "testName": "Общие вопросы",
       "questions": [
         {
           "id": 1,
           "question": "What is the capital of France?",
           "answers": ["London", "Berlin", "Paris", "Madrid"],
-          "right": "London"
+          "right": "Paris"
         },
         {
           "id": 2,
@@ -19,13 +19,13 @@
             "William Shakespeare",
             "Emily Bronte"
           ],
-          "right": "Charles Dickens"
+          "right": "William Shakespeare"
         },
         {
           "id": 3,
           "question": "What is the largest planet in our solar system?",
           "answers": ["Earth", "Mars", "Jupiter", "Neptune"],
-          "right": "Earth"
+          "right": "Jupiter"
         },
         {
           "id": 4,
@@ -36,13 +36,13 @@
             "Pablo Picasso",
             "Claude Monet"
           ],
-          "right": "Vincent van Gogh"
+          "right": "Leonardo da Vinci"
         },
         {
           "id": 5,
           "question": "What is the tallest mountain in the world?",
           "answers": ["Mount Kilimanjaro", "Mount Everest", "Mount Fuji", "K2"],
-          "right": "Mount Kilimanjaro"
+          "right": "Mount Everest"
         },
         {
           "id": 6,
@@ -59,7 +59,7 @@
           "id": 7,
           "question": "What is the currency of Japan?",
           "answers": ["Dollar", "Euro", "Yuan", "Yen"],
-          "right": "Dollar"
+          "right": "Yen"
         },
         {
           "id": 8,
@@ -70,13 +70,13 @@
             "Mark Zuckerberg",
             "Jeff Bezos"
           ],
-          "right": "Steve Jobs"
+          "right": "Bill Gates"
         },
         {
           "id": 9,
           "question": "Which animal is known as the 'king of the jungle'?",
           "answers": ["Tiger", "Lion", "Elephant", "Gorilla"],
-          "right": "Tiger"
+          "right": "Lion"
         },
         {
           "id": 10,
@@ -88,7 +88,7 @@
     },
     {
       "id": 1,
-      "testName": "Draft quests",
+      "testName": "Тестовые вопросы",
       "questions": [
         {
           "id": 1,

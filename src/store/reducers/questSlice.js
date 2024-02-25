@@ -6,10 +6,10 @@ import { formattedDate } from '../../utils/formattedDate';
 
 const initialState = {
   quest: null,
-  usernameStore: '',
-  testPackName: '',
-  testsAnswers: [],
-  results: [],
+  questUsername: '',
+  questPackName: '',
+  questAnswers: [],
+  questScore: [],
   users: [],
   status: '',
   isLoading: false,
@@ -21,26 +21,26 @@ export const questSlice = createSlice({
   initialState,
   reducers: {
     setStoreUsername: (state, action) => {
-      state.usernameStore = action.payload
+      state.questUsername = action.payload
       localStorage.setItem('username', action.payload)
     },
     setQuestName: (state, action) => {
-      state.testPackName = (action.payload);
+      state.questPackName = (action.payload);
     },
     setTestsAnswers: (state, action) => {
       const id = action.payload.id
       const answer = action.payload.answer
       const right = action.payload.right
-      if (state.testsAnswers[id]) {
-        state.testsAnswers[id].answer = answer
-        state.testsAnswers[id].right = right
+      if (state.questAnswers[id]) {
+        state.questAnswers[id].answer = answer
+        state.questAnswers[id].right = right
       } else {
-        state.testsAnswers.push(action.payload)
+        state.questAnswers.push(action.payload)
       }
-      localStorage.setItem('answers', JSON.stringify(state.testsAnswers))
+      localStorage.setItem('answers', JSON.stringify(state.questAnswers))
     },
     getResult: (state) => {
-      const correctAnswersCount = state.testsAnswers.reduce(
+      const correctAnswersCount = state.questAnswers.reduce(
         (acc, currentValue) => {
           if (currentValue.answer === currentValue.right) {
             return acc + 1;
@@ -49,14 +49,14 @@ export const questSlice = createSlice({
         },
         0
       );
-      state.results.push({
+      state.questScore.push({
         id: +new Date(),
         date: formattedDate,
-        username: state.usernameStore,
+        username: state.questUsername,
         score: correctAnswersCount,
-        testPackName: state.testPackName
+        questPackName: state.questPackName
       })
-      localStorage.setItem('score', JSON.stringify(state.results))
+      localStorage.setItem('score', JSON.stringify(state.questScore))
       localStorage.removeItem('answers')
     },
     resetScore: () => {
@@ -79,11 +79,11 @@ export const questSlice = createSlice({
         state.users = action.payload
         state.quest = questData
         const username = localStorage.getItem('username')
-        state.usernameStore = username ? username : ''
+        state.questUsername = username ? username : ''
         const answers = localStorage.getItem('answers')
-        state.testsAnswers = answers ? JSON.parse(answers) : []
+        state.questAnswers = answers ? JSON.parse(answers) : []
         const score = localStorage.getItem('score')
-        state.results = score ? JSON.parse(score) : []
+        state.questScore = score ? JSON.parse(score) : []
       })
       .addCase(fetchUsers.rejected, (state, action) => {
         state.isLoading = false

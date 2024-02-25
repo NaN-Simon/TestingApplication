@@ -8,12 +8,12 @@ const StyledQuestCard = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
 `;
 const StyledLabel = styled.label`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 200px;
   padding: 10px;
   border-radius: 6px;
   border: 1px solid
