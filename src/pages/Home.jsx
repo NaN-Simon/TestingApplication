@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
-import TestCard from '../components/card/TestCard';
+import QuestPackCover from '../components/card/QuestPackCover';
 import Input from '../components/UI/input/Input';
 import Button from '../components/UI/button/Button';
 
@@ -61,7 +61,7 @@ const Home = () => {
       {/* Паки тестов */}
       <StyledQuestPacks>
         {quest?.tests.map((test) => (
-          <TestCard
+          <QuestPackCover
             key={test.testName}
             header={test.testName}
             count={test.questions.length}

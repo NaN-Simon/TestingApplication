@@ -16,7 +16,7 @@ const StyledTest = styled.div`
   box-shadow: 0px 0px 10px 2px rgba(34, 60, 80, 1);
 `;
 
-const TestCard = ({ header, count, btnLink }) => {
+const QuestPackCover = ({ header, count, btnLink }) => {
   return (
     <StyledTest data-name='test-card'>
       <div>Название теста:</div>
@@ -28,9 +28,9 @@ const TestCard = ({ header, count, btnLink }) => {
   );
 };
 
-export default TestCard;
+export default QuestPackCover;
 
-TestCard.propTypes = {
+QuestPackCover.propTypes = {
   header: PropTypes.string.isRequired,
   count: PropTypes.number.isRequired,
   btnLink: PropTypes.string.isRequired,
