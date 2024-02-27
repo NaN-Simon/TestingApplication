@@ -27,7 +27,9 @@ const StyledQuestions = styled.div`
 
 const StyledNavigation = styled.div`
   display: flex;
+  justify-content: space-evenly;
   gap: 15px;
+  width: 100%;
 `;
 
 const TestId = () => {
@@ -67,9 +69,7 @@ const TestId = () => {
 
   /* запись ответа в store */
   const answerHandler = (answer) => {
-    const data = answer;
-    data.questPackId = questPackId;
-    dispatch(setTestsAnswers(data));
+    dispatch(setTestsAnswers(answer));
   };
 
   /* увеличение счетчика номера вопроса в рендере  */

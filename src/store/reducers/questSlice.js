@@ -1,14 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { fetchUsers } from '../../api/users'
 
-import questData from '../../assets/json/quest.json';
 import { formattedDate } from '../../utils/formattedDate';
+import { compareArrays } from '../../utils/compareArrays';
+
+import questData from '../../assets/json/quest.json';
 
 const initialState = {
   quest: null,
   questUsername: '',
   questPackName: '',
-  questAnswers: [],
+  questAnswers: {},
   questScore: [],
   users: [],
   status: '',
@@ -29,26 +31,16 @@ export const questSlice = createSlice({
     },
     setTestsAnswers: (state, action) => {
       const id = action.payload.id
-      const answer = action.payload.answer
-      const right = action.payload.right
-      if (state.questAnswers[id]) {
-        state.questAnswers[id].answer = answer
-        state.questAnswers[id].right = right
-      } else {
-        state.questAnswers.push(action.payload)
-      }
+      state.questAnswers[id] = action.payload
       localStorage.setItem('answers', JSON.stringify(state.questAnswers))
     },
     getResult: (state) => {
-      const correctAnswersCount = state.questAnswers.reduce(
-        (acc, currentValue) => {
-          if (currentValue.answer === currentValue.right) {
-            return acc + 1;
-          }
-          return acc;
-        },
-        0
-      );
+      let correctAnswersCount = 0
+      for (const key in state.questAnswers) {
+        const { answer, right } = state.questAnswers[key]
+        compareArrays(right, answer) && correctAnswersCount++
+      }
+
       state.questScore.push({
         id: +new Date(),
         date: formattedDate,
@@ -61,8 +53,8 @@ export const questSlice = createSlice({
     },
     resetScore: () => {
       localStorage.removeItem('score')
+      localStorage.removeItem('answers')
     }
-
   },
   extraReducers: (builder) => {
     builder
@@ -81,7 +73,7 @@ export const questSlice = createSlice({
         const username = localStorage.getItem('username')
         state.questUsername = username ? username : ''
         const answers = localStorage.getItem('answers')
-        state.questAnswers = answers ? JSON.parse(answers) : []
+        state.questAnswers = answers ? JSON.parse(answers) : {}
         const score = localStorage.getItem('score')
         state.questScore = score ? JSON.parse(score) : []
       })

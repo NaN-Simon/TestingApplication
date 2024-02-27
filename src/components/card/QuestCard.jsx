@@ -42,19 +42,28 @@ const QuestCard = (props) => {
     question,
     answers,
     right,
-    initialSelectedValue = null,
+    initialSelectedValue = [],
     onClick,
   } = props;
   const [selectedValue, setSelectedValue] = useState(initialSelectedValue);
 
-  const handleRadioChange = (value) => {
-    setSelectedValue(value);
-    onClick({
-      id: id - 1,
-      answer: value,
-      right: right,
+  const handleCheckboxChange = (value) => {
+    setSelectedValue(prev => {
+      if (prev.includes(value)) {
+        return prev.filter(item => item !== value);
+      } else {
+        return [...prev, value];
+      }
     });
+    const newSelectedValue = [...selectedValue];
+    if (newSelectedValue.includes(value)) {
+      newSelectedValue.splice(newSelectedValue.indexOf(value),  1);
+    } else {
+      newSelectedValue.push(value);
+    }
+    onClick({id: id -  1, answer: [...newSelectedValue], right: right});
   };
+
 
   const [shuffledAnswers] = useState(shuffleArray([...answers]));
 
@@ -65,14 +74,14 @@ const QuestCard = (props) => {
         return (
           <div key={item}>
             <input
-              type='radio'
+              type='checkbox'
               id={item}
               value={item}
-              checked={selectedValue === item}
-              onChange={() => handleRadioChange(item)}
+              checked={selectedValue.includes(item)}
+              onChange={() => handleCheckboxChange(item)}
               style={{ display: 'none' }}
             />
-            <StyledLabel $active={selectedValue === item} htmlFor={item}>
+            <StyledLabel $active={selectedValue.includes(item)} htmlFor={item}>
               {item}
             </StyledLabel>
           </div>
@@ -88,7 +97,7 @@ QuestCard.propTypes = {
   id: PropTypes.number.isRequired,
   question: PropTypes.string.isRequired,
   answers: PropTypes.arrayOf(PropTypes.string).isRequired,
-  right: PropTypes.string.isRequired,
-  initialSelectedValue: PropTypes.string,
+  right: PropTypes.arrayOf(PropTypes.string).isRequired,
+  initialSelectedValue: PropTypes.arrayOf(PropTypes.string),
   onClick: PropTypes.func.isRequired,
 };

@@ -8,7 +8,7 @@
           "id": 1,
           "question": "What is the capital of France?",
           "answers": ["London", "Berlin", "Paris", "Madrid"],
-          "right": "Paris"
+          "right": ["Paris"]
         },
         {
           "id": 2,
@@ -19,13 +19,13 @@
             "William Shakespeare",
             "Emily Bronte"
           ],
-          "right": "William Shakespeare"
+          "right": ["William Shakespeare"]
         },
         {
           "id": 3,
           "question": "What is the largest planet in our solar system?",
           "answers": ["Earth", "Mars", "Jupiter", "Neptune"],
-          "right": "Jupiter"
+          "right": ["Jupiter"]
         },
         {
           "id": 4,
@@ -36,13 +36,13 @@
             "Pablo Picasso",
             "Claude Monet"
           ],
-          "right": "Leonardo da Vinci"
+          "right": ["Leonardo da Vinci"]
         },
         {
           "id": 5,
           "question": "What is the tallest mountain in the world?",
           "answers": ["Mount Kilimanjaro", "Mount Everest", "Mount Fuji", "K2"],
-          "right": "Mount Everest"
+          "right": ["Mount Everest"]
         },
         {
           "id": 6,
@@ -53,13 +53,13 @@
             "Barack Obama",
             "George W. Bush"
           ],
-          "right": "Joe Biden"
+          "right": ["Joe Biden"]
         },
         {
           "id": 7,
           "question": "What is the currency of Japan?",
           "answers": ["Dollar", "Euro", "Yuan", "Yen"],
-          "right": "Yen"
+          "right": ["Yen"]
         },
         {
           "id": 8,
@@ -70,19 +70,19 @@
             "Mark Zuckerberg",
             "Jeff Bezos"
           ],
-          "right": "Bill Gates"
+          "right": ["Bill Gates"]
         },
         {
           "id": 9,
           "question": "Which animal is known as the 'king of the jungle'?",
           "answers": ["Tiger", "Lion", "Elephant", "Gorilla"],
-          "right": "Lion"
+          "right": ["Lion"]
         },
         {
           "id": 10,
           "question": "What is the fastest land animal?",
           "answers": ["Cheetah", "Lion", "Leopard", "Gazelle"],
-          "right": "Cheetah"
+          "right": ["Cheetah"]
         }
       ]
     },
@@ -93,80 +93,86 @@
         {
           "id": 1,
           "question": "Hello?",
-          "answers": ["world", "mrGreen", "mrBlue", "hulk"],
-          "right": "world"
+          "answers": ["world", "mrGreen", "mrBlue", "world!"],
+          "right": ["world", "world!"]
         },
         {
           "id": 2,
           "question": "marko?",
           "answers": ["man", "polo", "woman", "human"],
-          "right": "polo"
+          "right": ["polo"]
         },
         {
           "id": 3,
           "question": "one plus one?",
           "answers": ["two", "three", "four", "five"],
-          "right": "two"
+          "right": ["two"]
         },
         {
           "id": 4,
           "question": "what is color of sun?",
           "answers": ["white", "blue", "red", "green"],
-          "right": "white"
+          "right": ["white"]
         },
         {
           "id": 5,
           "question": "two plus two",
           "answers": ["two", "three", "four", "five"],
-          "right": "four"
+          "right": ["four"]
         },
         {
           "id": 6,
           "question": "who are you?",
           "answers": ["Hank", "Tuco", "Jesse", "mr.White"],
-          "right": "mr.White"
+          "right": ["mr.White"]
         },
         {
           "id": 7,
           "question": "three plus three",
           "answers": ["two", "six", "four", "five"],
-          "right": "six"
+          "right": ["six"]
         },
         {
           "id": 8,
           "question": "three plus one",
           "answers": ["two", "six", "four", "five"],
-          "right": "four"
+          "right": ["four"]
         },
         {
           "id": 9,
           "question": "three plus two",
           "answers": ["two", "six", "four", "five"],
-          "right": "five"
+          "right": ["five"]
         },
         {
           "id": 10,
           "question": "three plus zero",
           "answers": ["two", "six", "four", "three"],
-          "right": "three"
+          "right": ["three"]
         },
         {
           "id": 11,
           "question": "zero plus zero",
           "answers": ["two", "zero", "four", "three"],
-          "right": "zero"
+          "right": ["zero"]
         },
         {
           "id": 12,
           "question": "zero minus zero",
           "answers": ["zero", "six", "four", "three"],
-          "right": "zero"
+          "right": ["zero"]
         },
         {
           "id": 13,
           "question": "zero plus six",
-          "answers": ["two", "six", "four", "three"],
-          "right": "six"
+          "answers": ["two", "six", "6", "three"],
+          "right": ["six", "6"]
+        },
+        {
+          "id": 14,
+          "question": "Тест с 8 ответами, выбрать цифры",
+          "answers": ["one", "two", "three", "four", "five", "six", "seven", "eight"],
+          "right": ["one", "two", "three", "four", "five", "six", "seven", "eight"]
         }
       ]
     }
