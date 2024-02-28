@@ -11,6 +11,7 @@ const initialState = {
   questUsername: '',
   questPackName: '',
   questAnswers: {},
+  questCurrentAnswerId: 0,
   questScore: [],
   users: [],
   status: '',
@@ -28,6 +29,11 @@ export const questSlice = createSlice({
     },
     setQuestName: (state, action) => {
       state.questPackName = (action.payload);
+    },
+    setQuestCurrentAnswerId: (state, action) => {
+      console.log(action.payload);
+      state.questCurrentAnswerId = (action.payload);
+      localStorage.setItem('questCurrentAnswerId', JSON.stringify(state.questCurrentAnswerId))
     },
     setTestsAnswers: (state, action) => {
       const id = action.payload.id
@@ -53,7 +59,12 @@ export const questSlice = createSlice({
     },
     resetScore: () => {
       localStorage.removeItem('score')
+    },
+    resetAnswer: () => {
       localStorage.removeItem('answers')
+    },
+    resetQuestCurrentAnswerId: () => {
+      localStorage.removeItem('questCurrentAnswerId')
     }
   },
   extraReducers: (builder) => {
@@ -70,12 +81,15 @@ export const questSlice = createSlice({
         /* для симуляции async запроса, после получения data от fake-api присваивается mock-data */
         state.users = action.payload
         state.quest = questData
+        // state.questPackName = questData.testName
         const username = localStorage.getItem('username')
         state.questUsername = username ? username : ''
         const answers = localStorage.getItem('answers')
         state.questAnswers = answers ? JSON.parse(answers) : {}
         const score = localStorage.getItem('score')
         state.questScore = score ? JSON.parse(score) : []
+        const questCurrentAnswerId = localStorage.getItem('questCurrentAnswerId')
+        state.questCurrentAnswerId = questCurrentAnswerId ? JSON.parse(questCurrentAnswerId) : 0
       })
       .addCase(fetchUsers.rejected, (state, action) => {
         state.isLoading = false
@@ -88,9 +102,12 @@ export const questSlice = createSlice({
 export const {
   setStoreUsername,
   setQuestName,
+  setQuestCurrentAnswerId,
   setTestsAnswers,
   getResult,
   resetScore,
+  resetAnswer,
+  resetQuestCurrentAnswerId,
 } = questSlice.actions
 
 export default questSlice.reducer

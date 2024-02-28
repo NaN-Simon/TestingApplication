@@ -1,16 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-
 import QuestCard from '../../components/card/QuestCard';
 import StatusBar from '../../components/statusBar/StatusBar';
 import CardNavigation from '../../components/navigation/CardNavigation';
 
 import {
+  setQuestCurrentAnswerId,
   setTestsAnswers,
   setQuestName,
   getResult,
+  resetAnswer,
+  resetQuestCurrentAnswerId,
 } from '../../store/reducers/questSlice';
 
 import { fetchUsers } from '../../api/users';
@@ -28,47 +30,64 @@ const StyledQuestions = styled.div`
 `;
 
 const TestId = () => {
-  /* текущий номер вопроса в рендере */
-  const [currentQuestNumber, setCurrentQuestNumber] = useState(0);
-
-  /* роутинг */
-  const navigate = useNavigate();
-  /* redux */
-  const dispatch = useDispatch();
-  const { quest, questAnswers } = useSelector((state) => state.questReducer);
-
   /* id текущего пака вопросов */
   const { id: questPackId } = useParams();
 
+  /* роутинг */
+  const navigate = useNavigate();
+
+  /* redux */
+  const dispatch = useDispatch();
+  const { quest, questAnswers, questPackName, questCurrentAnswerId } =
+    useSelector((state) => state.questReducer);
+
+  /* текущий номер вопроса в рендере */
+  const [currentQuestNumber, setCurrentQuestNumber] =
+    useState(questCurrentAnswerId);
+
   /* данные текущего пака вопросов */
-  const questPackData = quest?.tests[questPackId];
+  const questPackData = useMemo(
+    () => quest?.tests[questPackId],
+    [quest?.tests, questPackId]
+  );
+  // const questPackData = quest?.tests[questPackId];
 
   /* число вопросов пака вопросов */
-  const questPackLength = questPackData?.questions.length;
+  const questPackLength = useMemo(
+    () => questPackData?.questions.length,
+    [questPackData?.questions.length]
+  );
 
   /* имя пака вопросов */
-  const questPackName = `Test ${+questPackId + 1} - ${questPackData?.testName}`;
+  const questPackTitle = useMemo(
+    () => `Test ${+questPackId + 1} - ${questPackData?.testName}`,
+    [questPackData?.testName, questPackId]
+  );
 
   /* если пред. вопроса нет возврат на Home page,
    * если есть след. вопрос */
   const prevHandler = () => {
-    currentQuestNumber <= 0
+    questCurrentAnswerId <= 0
       ? navigate('/')
-      : setCurrentQuestNumber((prev) => prev - 1);
+      : (setCurrentQuestNumber((prev) => prev - 1),
+        dispatch(setQuestCurrentAnswerId(questCurrentAnswerId - 1)));
   };
 
   /* если след. вопрос есть след.вопрос,
    * если нет вычислить результат перейти на страницу Score page */
   const nextHandler = () => {
-    currentQuestNumber + 1 < questPackLength
-      ? setCurrentQuestNumber((prev) => prev + 1)
-      : (dispatch(getResult()), navigate('/score'));
+    questCurrentAnswerId < questPackLength - 1
+      ? (setCurrentQuestNumber((prev) => prev + 1),
+        dispatch(setQuestCurrentAnswerId(questCurrentAnswerId + 1)))
+      : (dispatch(getResult()),
+        navigate('/score'),
+        dispatch(setQuestCurrentAnswerId(0)));
   };
 
   const ButtonPrevTitle =
-    currentQuestNumber <= 0 ? 'На домашнюю страницу' : 'Назад';
+    questCurrentAnswerId <= 0 ? 'На домашнюю страницу' : 'Назад';
   const ButtonNextTitle =
-    currentQuestNumber + 1 < questPackLength
+    questCurrentAnswerId < questPackLength - 1
       ? 'Продолжить'
       : 'Получить результат';
 
@@ -77,10 +96,18 @@ const TestId = () => {
     dispatch(fetchUsers());
   }, [dispatch]);
 
+
   /* установка в store названия текущего теста */
   useEffect(() => {
     questPackData && dispatch(setQuestName(questPackData.testName));
-  }, [dispatch, questPackData]);
+    if (questPackName) {
+      if (questPackName !== questPackData?.testName) {
+        dispatch(resetAnswer());
+        dispatch(resetQuestCurrentAnswerId());
+      }
+    }
+  }, [dispatch, questPackData, questPackName]);
+
 
   if (!questPackData) {
     /* если url теста не существует, будет предупреждение  */
@@ -88,11 +115,11 @@ const TestId = () => {
   } else {
     return (
       <StyledTestId data-name='test-id'>
-        {questPackData && <span>{questPackName}</span>}
+        {questPackData && <span>{questPackTitle}</span>}
 
         {questPackData?.questions.map((item, index) => {
-          const initialValue = questAnswers[currentQuestNumber]?.answer;
-          if (index === currentQuestNumber)
+          const initialValue = questAnswers[questCurrentAnswerId]?.answer;
+          if (index === questCurrentAnswerId)
             return (
               <StyledQuestions key={item.id}>
                 {/* Карточки с вопросами */}

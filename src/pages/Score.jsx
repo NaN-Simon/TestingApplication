@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Button from '../components/UI/button/Button';
 
 import { fetchUsers } from '../api/users';
-import { resetScore } from '../store/reducers/questSlice';
+import { resetScore, resetAnswer } from '../store/reducers/questSlice';
 
 const StyledScore = styled.div`
   display: flex;
@@ -31,6 +31,7 @@ const Score = () => {
   /* сброс результатов */
   const resetHandler = () => {
     dispatch(resetScore());
+    dispatch(resetAnswer());
     setScore([]);
   };
 

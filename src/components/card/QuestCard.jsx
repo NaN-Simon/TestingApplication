@@ -46,7 +46,7 @@ const QuestCard = (props) => {
     onClick,
   } = props;
   const [selectedValue, setSelectedValue] = useState(initialSelectedValue);
-  
+
   const handleCheckboxChange = (value) => {
     setSelectedValue(prev => {
       if (prev.includes(value)) {
